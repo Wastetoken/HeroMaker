@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G L I T C H // F O R G E Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@400,500,600,700&f[]=space-mono@400,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            font-family: 'General Sans', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
+        }
+        .range-input {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 2px;
+            background: #333;
+            outline: none;
+            cursor: pointer;
+        }
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #CCFF00;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.6);
+            border: 2px solid #000;
+        }
+        .shader-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+        }
+        .layer-active {
+            outline: 2px dashed #CCFF00;
+            outline-offset: 12px;
+        }
+        .text-glow {
+            text-shadow: 0 0 30px rgba(0,0,0,1), 0 0 10px rgba(255,255,255,0.1);
+        }
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            background: none;
+            cursor: pointer;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CCFF00;
+        }
+        .scanlines::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .dev-grid {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1440px;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            padding: 0 24px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .dev-grid-col {
+            background: rgba(204, 255, 0, 0.05);
+            border-left: 1px solid rgba(204, 255, 0, 0.1);
+            border-right: 1px solid rgba(204, 255, 0, 0.1);
+            height: 100%;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+  }
+}
+</script>
+</head>
+<body class="scanlines">
+    <div id="root"></div>
+</body>
+</html>
